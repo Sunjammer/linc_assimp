@@ -1,22 +1,20 @@
 <xml>
-
     <!-- For a more in depth guide: https://github.com/snowkit/hxcpp-guide -->
-
     <files id='haxe'>
-
-        <!-- add files and flags to the haxe c++ build -->
-
-        <compilerflag value='-I${LINC_ASSIMP_PATH}/linc/'/>
-        <compilerflag value='-DEMPTY_EXAMPLE_DEFINE_FOR_THE_CPP_CODE'/>
-
+        <compilerflag value='-DLINC_ASSIMP'/>
+        <compilerflag value='-DLINC_ASSIMP_STATIC'/>
+        <compilerflag value='-I${LINC_ASSIMP_PATH}linc/'/>
+        <compilerflag value='-I${LINC_ASSIMP_PATH}lib/assimp/include'/>
+        <compilerflag value='-Dstatic_link'/>
         <file name='${LINC_ASSIMP_PATH}linc/linc_assimp.cpp' />
-
     </files>
 
     <target id="haxe">
-
-        <!-- add linker flags to the haxe build output -->
-
+        <section if="windows">
+            <lib name='${LINC_ASSIMP_PATH}/lib/assimp/lib/x86/assimp-vc140-mt.lib' />
+        </section>
     </target>
+
+    <copyFile name="assimp-vc140-mt.dll" from="${LINC_ASSIMP_PATH}/lib/assimp/lib/x86/" if="windows"/>
 
 </xml>

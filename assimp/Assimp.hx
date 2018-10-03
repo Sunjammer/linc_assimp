@@ -4,7 +4,7 @@ package assimp;
 @:include('linc_assimp.h')
 #if !display
 @:build(linc.Linc.touch())
-@:build(linc.Linc.xml('empty'))
+@:build(linc.Linc.xml('assimp'))
 #end
 extern class Assimp {
 
@@ -12,8 +12,8 @@ extern class Assimp {
         //can be wrapped in linc::libname or call directly
         //and the header for the lib included in linc_assimp.h
 
-    @:native('linc::assimp::example')
-    static function example() : Int;
+    @:native('linc::assimp::test')
+    static function test() : Int;
 
         //inline functions can be used as wrappers
         //and can be useful to juggle haxe typing to or from the c++ extern
