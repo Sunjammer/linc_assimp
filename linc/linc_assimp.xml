@@ -16,5 +16,6 @@
     </target>
 
     <copyFile name="assimp-vc140-mt.dll" from="${LINC_ASSIMP_PATH}/lib/assimp/lib/x86/" if="windows"/>
+    <copyFile name="assimp.md" from="${LINC_ASSIMP_PATH}/lib/" if="windows"/>
 
 </xml>
