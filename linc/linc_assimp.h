@@ -10,10 +10,10 @@
 
 namespace linc {
 
-    namespace empty {
+    namespace assimp {
 
         extern int example();
 
-    } //empty namespace
+    } //assimp namespace
 
 } //linc

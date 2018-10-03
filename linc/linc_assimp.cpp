@@ -1,15 +1,15 @@
 //hxcpp include should be first
 #include <hxcpp.h>
-#include "./linc_empty.h"
+#include "./linc_assimp.h"
 
 namespace linc {
 
-    namespace empty {
+    namespace assimp {
 
         int example() {
             return 55;
         }
 
-    } //empty namespace
+    } //assimp namespace
 
 } //linc
