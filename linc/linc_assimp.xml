@@ -2,10 +2,8 @@
     <!-- For a more in depth guide: https://github.com/snowkit/hxcpp-guide -->
     <files id='haxe'>
         <compilerflag value='-DLINC_ASSIMP'/>
-        <compilerflag value='-DLINC_ASSIMP_STATIC'/>
         <compilerflag value='-I${LINC_ASSIMP_PATH}linc/'/>
         <compilerflag value='-I${LINC_ASSIMP_PATH}lib/assimp/include'/>
-        <compilerflag value='-Dstatic_link'/>
         <file name='${LINC_ASSIMP_PATH}linc/linc_assimp.cpp' />
     </files>
 
