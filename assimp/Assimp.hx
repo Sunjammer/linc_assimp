@@ -146,6 +146,15 @@ abstract AiMesh(RawPointer<AiM>) from RawPointer<AiM> to RawPointer<AiM>{
         return untyped __cpp__("&({0}->mFaces[{1}])", this, idx);
     }
 
+    public inline function getTextureCoords(idx:UInt):glm.Vec2{
+        var out = new glm.Vec2();
+        var data:Array<Float32> = [0,0];
+        untyped __cpp__("{2}[0] = {0}->mTextureCoords[0][{1}].x", this, idx, data);
+        untyped __cpp__("{2}[1] = {0}->mTextureCoords[0][{1}].y", this, idx, data);
+        out.x = data[0];
+        out.y = data[1];
+        return out;
+    }
     public inline function getNormals(idx:UInt):glm.Vec3{
         var out = new glm.Vec3();
         var data:Array<Float32> = [0,0,0];
