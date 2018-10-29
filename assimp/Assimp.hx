@@ -155,6 +155,7 @@ abstract AiMesh(RawPointer<AiM>) from RawPointer<AiM> to RawPointer<AiM>{
         out.y = data[1];
         return out;
     }
+
     public inline function getNormals(idx:UInt):glm.Vec3{
         var out = new glm.Vec3();
         var data:Array<Float32> = [0,0,0];
@@ -166,6 +167,31 @@ abstract AiMesh(RawPointer<AiM>) from RawPointer<AiM> to RawPointer<AiM>{
         out.z = data[2];
         return out;
     }
+    
+    public inline function getBitangents(idx:UInt):glm.Vec3{
+        var out = new glm.Vec3();
+        var data:Array<Float32> = [0,0,0];
+        untyped __cpp__("{2}[0] = {0}->mBitangents[{1}].x", this, idx, data);
+        untyped __cpp__("{2}[1] = {0}->mBitangents[{1}].y", this, idx, data);
+        untyped __cpp__("{2}[2] = {0}->mBitangents[{1}].z", this, idx, data);
+        out.x = data[0];
+        out.y = data[1];
+        out.z = data[2];
+        return out;
+    }
+    
+    public inline function getTangents(idx:UInt):glm.Vec3{
+        var out = new glm.Vec3();
+        var data:Array<Float32> = [0,0,0];
+        untyped __cpp__("{2}[0] = {0}->mTangents[{1}].x", this, idx, data);
+        untyped __cpp__("{2}[1] = {0}->mTangents[{1}].y", this, idx, data);
+        untyped __cpp__("{2}[2] = {0}->mTangents[{1}].z", this, idx, data);
+        out.x = data[0];
+        out.y = data[1];
+        out.z = data[2];
+        return out;
+    }
+
     public inline function getVertex(idx:UInt):glm.Vec3{
         var out = new glm.Vec3();
         var data:Array<Float32> = [0,0,0];
