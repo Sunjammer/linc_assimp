@@ -16,10 +16,6 @@ extern class Assimp {
     static function ReadFile(path:String) : AiScene;
 } //Assimp
 
-@:keep
-@:include('linc_assimp.h')
-@:native('Assimp::Importer')
-extern class AImporter{ }
 
 @:keep
 @:include('linc_assimp.h')
@@ -46,13 +42,19 @@ private extern class AiM{ }
 @:native('aiFace')
 private extern class AiF{ }
 
-abstract Importer(Pointer<AImporter>) from Pointer<AImporter> to Pointer<AImporter>{
+
+@:keep
+@:include('linc_assimp.h')
+@:native('Assimp::Importer')
+extern class AImporter{ }
+
+abstract Importer(RawPointer<AImporter>) from RawPointer<AImporter> to RawPointer<AImporter>{
     public inline function new(){
         this = untyped __cpp__("new Assimp::Importer()");
     }
 
     public inline function ReadFile(path:String):AiScene{
-        return untyped __cpp__("{0}.get_value().ReadFile({1}.c_str(), aiProcess_Triangulate | aiProcess_FlipUVs | aiProcess_GenNormals)", this, path);
+        return untyped __cpp__("{0}->ReadFile({1}.c_str(), aiProcess_Triangulate | aiProcess_FlipUVs | aiProcess_GenNormals)", this, path);
     }
 
     public inline function dispose(){
