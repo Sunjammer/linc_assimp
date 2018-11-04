@@ -57,6 +57,10 @@ abstract Importer(RawPointer<AImporter>) from RawPointer<AImporter> to RawPointe
         return untyped __cpp__("{0}->ReadFile({1}.c_str(), aiProcess_Triangulate | aiProcess_FlipUVs | aiProcess_GenNormals)", this, path);
     }
 
+    public inline function ReadFileFromMemory(bytes:haxe.io.BytesData, hint:String):AiScene{
+        return untyped __cpp__("{0}->ReadFileFromMemory({1}, {2}, aiProcess_Triangulate | aiProcess_FlipUVs | aiProcess_GenNormals, {3}.c_str())", this, cpp.NativeArray.address(bytes, 0).ptr, bytes.length, hint);
+    }
+
     public inline function dispose(){
         untyped __cpp__("delete {0}", this);
     }
