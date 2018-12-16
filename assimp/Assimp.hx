@@ -48,7 +48,9 @@ private extern class AiF{ }
 @:native('Assimp::Importer')
 extern class AImporter{ }
 
-abstract Importer(RawPointer<AImporter>) from RawPointer<AImporter> to RawPointer<AImporter>{
+@:noDebug
+@:unreflective
+extern abstract Importer(RawPointer<AImporter>) from RawPointer<AImporter> to RawPointer<AImporter>{
     public inline function new(){
         this = untyped __cpp__("new Assimp::Importer()");
     }
@@ -61,12 +63,14 @@ abstract Importer(RawPointer<AImporter>) from RawPointer<AImporter> to RawPointe
         return untyped __cpp__("{0}->ReadFileFromMemory({1}, {2}, aiProcess_Triangulate | aiProcess_FlipUVs | aiProcess_GenNormals, {3}.c_str())", this, cpp.NativeArray.address(bytes, 0).ptr, bytes.length, hint);
     }
 
-    public inline function dispose(){
+    public inline function dispose():Void{
         untyped __cpp__("delete {0}", this);
     }
 }
 
-abstract AiScene(RawConstPointer<AiS>) from RawConstPointer<AiS> to RawConstPointer<AiS>{
+@:noDebug
+@:unreflective
+extern abstract AiScene(RawConstPointer<AiS>) from RawConstPointer<AiS> to RawConstPointer<AiS>{
     public var mNumMeshes(get, never):Int;
     public inline function new(ptr:RawConstPointer<AiS>){
         this = ptr;
@@ -84,13 +88,15 @@ abstract AiScene(RawConstPointer<AiS>) from RawConstPointer<AiS> to RawConstPoin
         return untyped __cpp__("{0}->mRootNode", this);
     }
 
-    public inline function destroy(){
+    public inline function destroy():Void{
         untyped __cpp__("delete {0}", this);
     }
 }
 
 
-abstract AiNode(RawPointer<AiN>) from RawPointer<AiN> to RawPointer<AiN>{
+@:noDebug
+@:unreflective
+extern abstract AiNode(RawPointer<AiN>) from RawPointer<AiN> to RawPointer<AiN>{
     public var mNumMeshes(get, never):Int;
     public var mNumChildren(get, never):Int;
 
@@ -110,12 +116,14 @@ abstract AiNode(RawPointer<AiN>) from RawPointer<AiN> to RawPointer<AiN>{
         return untyped __cpp__("{0}->mChildren[{1}]", this, idx);
     }
 
-    public inline function destroy(){
+    public inline function destroy():Void{
         untyped __cpp__("delete {0}", this);
     }
 }
 
-abstract AiFace(RawPointer<AiF>) from RawPointer<AiF> to RawPointer<AiF>{
+@:noDebug
+@:unreflective
+extern abstract AiFace(RawPointer<AiF>) from RawPointer<AiF> to RawPointer<AiF>{
     public var mNumIndices(get, never):Int;
 
     inline function get_mNumIndices():UInt{
@@ -126,12 +134,14 @@ abstract AiFace(RawPointer<AiF>) from RawPointer<AiF> to RawPointer<AiF>{
         return untyped __cpp__("{0}->mIndices[{1}]", this, idx);
     }
 
-    public inline function destroy(){
+    public inline function destroy():Void{
         untyped __cpp__("delete {0}", this);
     }
 }
 
-abstract AiMesh(RawPointer<AiM>) from RawPointer<AiM> to RawPointer<AiM>{
+@:noDebug
+@:unreflective
+extern abstract AiMesh(RawPointer<AiM>) from RawPointer<AiM> to RawPointer<AiM>{
     public var mNumVertices(get, never):Int;
     public var mNumFaces(get, never):Int;
     public var mMaterialIndex(get, never):Int;
@@ -210,7 +220,7 @@ abstract AiMesh(RawPointer<AiM>) from RawPointer<AiM> to RawPointer<AiM>{
         return out;
     }
 
-    public inline function destroy(){
+    public inline function destroy():Void{
         untyped __cpp__("delete {0}", this);
     }
 }
