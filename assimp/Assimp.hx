@@ -162,6 +162,9 @@ extern abstract AiMesh(RawPointer<AiM>) from RawPointer<AiM> to RawPointer<AiM>{
         return untyped __cpp__("&({0}->mFaces[{1}])", this, idx);
     }
 
+    public inline function hasTextureCoords(idx:UInt):Bool{
+        return untyped __cpp__("{0}->HasTextureCoords({1})", this, idx);
+    }
     public inline function getTextureCoords(idx:UInt):glm.Vec2{
         var out = new glm.Vec2();
         var data:Array<Float32> = [0,0];
@@ -172,6 +175,9 @@ extern abstract AiMesh(RawPointer<AiM>) from RawPointer<AiM> to RawPointer<AiM>{
         return out;
     }
 
+    public inline function hasNormals():Bool{
+        return untyped __cpp__("{0}->HasNormals()", this);
+    }
     public inline function getNormals(idx:UInt):glm.Vec3{
         var out = new glm.Vec3();
         var data:Array<Float32> = [0,0,0];
@@ -184,6 +190,9 @@ extern abstract AiMesh(RawPointer<AiM>) from RawPointer<AiM> to RawPointer<AiM>{
         return out;
     }
     
+    public inline function hasTangentsAndBitangents():Bool{
+        return untyped __cpp__("{0}->HasTangentsAndBitangents()", this);
+    }
     public inline function getBitangents(idx:UInt):glm.Vec3{
         var out = new glm.Vec3();
         var data:Array<Float32> = [0,0,0];
@@ -206,6 +215,10 @@ extern abstract AiMesh(RawPointer<AiM>) from RawPointer<AiM> to RawPointer<AiM>{
         out.y = data[1];
         out.z = data[2];
         return out;
+    }
+
+    public inline function hasPositions():Bool{
+        return untyped __cpp__("{0}->HasPositions()", this);
     }
 
     public inline function getVertex(idx:UInt):glm.Vec3{
